@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local # 기본 환경 선택
+
+# local 환경
+--- #application.yml 에서 --- 를 기준으로 상단은 공통 영역이며, 하단이 각 profile의 설정 영역입니다. 
+spring:
+  profiles: local
+  jpa:
+    database: H2
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      #Posts.java 20번째줄 옵션과 동일한 기능
+      #use-new-id-generator-mappings: false 
+      
+  #AUTO_SERVER=TRUE 추가하면 여러 프로세스에서 동시에 접속이 가능한다.
+  datasource:
+    url: jdbc:h2:~/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=true
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+    #data: classpath:data-h2.sql
+  h2:
+    console:
+      enabled: true
